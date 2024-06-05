@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "0dbfdcf9-cfa0-498a-8f75-9da723bcc3f5",
+		"name": "Cliente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8184134",
+		"_collection_link": "https://speeding-eclipse-5759.postman.co/workspace/FIAP---FASE5~86ac1293-e463-496b-bfa4-0b5c829dd007/collection/8184134-0dbfdcf9-cfa0-498a-8f75-9da723bcc3f5?action=share&source=collection_link&creator=8184134"
+	},
+	"item": [
+		{
+			"name": "obterTodos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api-gateway}}/clientes",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api-gateway}}/clientes/02c615ff-4b26-4bec-a5eb-4a4ca8d30d6a",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"clientes",
+						"02c615ff-4b26-4bec-a5eb-4a4ca8d30d6a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscaEnderecoPorCep",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api-gateway}}/clientes/buscaendereco/93410-186",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"clientes",
+						"buscaendereco",
+						"93410-186"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cadastrar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"nome\": \"Cliente Teste excluir\",\r\n    \"email\": \"email02101@email.com.br\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Itajai\",\r\n        \"numero\": \"20\",\r\n        \"complemento\": \"\",\r\n        \"bairro\": \"Centro\",\r\n        \"cidade\": \"Sao Paulo\",\r\n        \"uf\": \"SP\",\r\n        \"cep\": \"000000000\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-gateway}}/clientes",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alterar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"537eff67-e977-4287-944b-7581727eae1d\",\r\n     \"nome\": \"Cliente Teste 002\",\r\n    \"email\": \"email002@email.com.br\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Itajai\",\r\n        \"numero\": \"20\",\r\n        \"complemento\": \"\",\r\n        \"bairro\": \"Centro\",\r\n        \"cidade\": \"Sao Paulo\",\r\n        \"uf\": \"SP\",\r\n        \"cep\": \"000000000\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-gateway}}/clientes",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "excluir",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"9b08c26a-63ed-4f8e-b772-fe7903db3eba\",\r\n    \"nome\": \"Cliente Teste excluir\",\r\n    \"email\": \"email02101@email.com.br\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Itajai\",\r\n        \"numero\": \"20\",\r\n        \"complemento\": \"\",\r\n        \"bairro\": \"Centro\",\r\n        \"cidade\": \"Sao Paulo\",\r\n        \"uf\": \"SP\",\r\n        \"cep\": \"000000000\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-gateway}}/clientes",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: srvCliente
+# Postgresql
+  datasource:
+    url: ${SP_DTSRC_URL:jdbc:postgresql://localhost:5432/fase5}
+    username: ${SP_DTSRC_USERNAME:postgres}
+    password: ${SP_DTSRC_PASSWORD:Postgres2023!}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+
+# Others
+server:
+  port: 9510
+
+# Eureka
+eureka:
+  instance:
+    instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUR_DEFAULTZONE:http://localhost:8761/eureka}
+
+# Viacep - busca endereço
+appviacep:
+  receive:
+    name: viacep
+    url: https://viacep.com.br/ws/
