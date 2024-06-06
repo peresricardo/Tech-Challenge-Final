@@ -27,6 +27,12 @@ OpenFeign é utilizado para efetuar busca de endereço por Cep, utilizando o ser
 
 <br>
 
+## 📑 Swagger Documentação
+- Microserviço de Clientes - http://localhost:8080/clientes/swagger-ui.html
+
+<br>
+<br>
+
 ## 🔧 Instalação
 
 ```shell

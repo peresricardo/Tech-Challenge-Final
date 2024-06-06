@@ -8,6 +8,11 @@ spring:
           uri: lb://srvcliente
           predicates:
             - Path=/clientes/**
+        - id: tbsrvclienteswagger
+          uri: lb://srvcliente
+          predicates:
+            - Path=/clientes/api-docs
+            - Method=GET
 
 server:
   port: 8080
@@ -19,3 +24,15 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+# Swagger
+springdoc:
+  api-docs:
+    enable: true
+  swagger-ui:
+    enable: true
+    path: /swagger-ui.html
+    config-url: /api-docs/swagger-config
+    urls:
+      - url: /clientes/api-docs
+        name: Cliente Service

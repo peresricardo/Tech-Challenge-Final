@@ -14,6 +14,17 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
 
+openapi:
+  service:
+    title: service-cliente doc
+    version: 1.0.0
+    url: localhost:8080
+springdoc:
+  api-docs:
+    path: /clientes/api-docs
+  swagger-ui:
+    path: /clientes/swagger-ui.html
+
 # Others
 server:
   port: 9510
