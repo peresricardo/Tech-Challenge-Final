@@ -20,3 +20,26 @@ em um único endereço, facilitando a utilização de todos os serviços com cha
 Serviço em Spring Boot 3 utilizando:
 Jpa - Actuator - Discovery Client e OpenFeign<br>
 OpenFeign é utilizado para efetuar busca de endereço por Cep, utilizando o serviço ViaCep
+
+<br>
+
+## 🔧 Instalação
+
+```shell
+git clone https://github.com/peresricardo/Tech-Challenge-Final
+```
+### Limpar e compilar
+
+- mvn clean<br>
+  remover o diretório antes de executar o mvn clean
+- mvn compile<br>
+  compila o projeto, gera o resultado no diretório _target_
+
+## 🛠️ Execução de testes no projeto
+<hr>
+
+- Para executar os testes unitários:
+
+```sh
+mvn test
+```

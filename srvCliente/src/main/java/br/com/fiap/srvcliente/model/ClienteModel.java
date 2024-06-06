@@ -2,6 +2,8 @@ package br.com.fiap.srvcliente.model;
 
 import br.com.fiap.srvcliente.dto.ClienteDto;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +12,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "tb_cliente")
 @Data
+@Builder(toBuilder = true)
 @NoArgsConstructor
+@AllArgsConstructor
 public class ClienteModel {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
