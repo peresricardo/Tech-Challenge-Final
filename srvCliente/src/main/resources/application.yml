@@ -20,15 +20,13 @@ server:
 
 # Eureka
 eureka:
-  instance:
-    instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: ${EUR_DEFAULTZONE:http://localhost:8761/eureka}
 
-# Viacep - busca endereço
+# Viacep - busca endereco
 appviacep:
   receive:
     name: viacep
