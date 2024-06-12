@@ -52,4 +52,5 @@ git clone https://github.com/peresricardo/Tech-Challenge-Final
 
 ```sh
 mvn test
+mvn clean jacoco:prepare-agent install jacoco:report
 ```
