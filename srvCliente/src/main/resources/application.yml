@@ -3,7 +3,7 @@ spring:
     name: srvCliente
 # Postgresql
   datasource:
-    url: ${SP_DTSRC_URL:jdbc:postgresql://localhost:5432/fase5}
+    url: ${SP_DTSRC_URL:jdbc:postgresql://postgres-db:5432/fase5}
     username: ${SP_DTSRC_USERNAME:postgres}
     password: ${SP_DTSRC_PASSWORD:Postgres2023!}
   jpa:
@@ -35,7 +35,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: ${EUR_DEFAULTZONE:http://localhost:8761/eureka}
+      defaultZone: ${EUR_DEFAULTZONE:http://srv-discovery:8761/eureka}
 
 # Viacep - busca endereco
 appviacep:

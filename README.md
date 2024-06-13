@@ -29,7 +29,11 @@ OpenFeign é utilizado para efetuar busca de endereço por Cep, utilizando o ser
 
 ## 📑 Swagger Documentação
 - Microserviço de Clientes - http://localhost:8080/clientes/swagger-ui.html
+<br>
+<br>
 
+Para acessar os serviços registrados no Eureka acesse:
+http://localhost:8761
 <br>
 <br>
 
@@ -38,12 +42,52 @@ OpenFeign é utilizado para efetuar busca de endereço por Cep, utilizando o ser
 ```shell
 git clone https://github.com/peresricardo/Tech-Challenge-Final
 ```
-### Limpar e compilar
+### Docker
+Criar a rede para utilização dos serviços
+```sh
+docker network create fase5network
+```
 
-- mvn clean<br>
-  remover o diretório antes de executar o mvn clean
-- mvn compile<br>
-  compila o projeto, gera o resultado no diretório _target_
+### Limpar, compilar e gerar imagem para o docker
+
+- SrvDiscovery - Serviço de registro dos micros serviços
+  cd srvDiscovery
+```sh
+mvn clean install
+docker image build -t srv-discovery .
+```
+
+- SrvGateway - Serviço de centralização do endereço único dos micros serviços
+  cd srvGateway
+```sh
+mvn clean install
+docker image build -t srv-gateway .
+```
+
+- srvCliente - Micro serviço de clientes
+  cd srvCliente
+```sh
+mvn clean install
+docker image build -t srv-cliente .
+```
+
+- É possível executar todos os serviços de uma única vez utilizado o arquivo docker-compose que se encontra na raiz da pasta principal do projeto.
+<br>Executar o comando abaixo para iniciar os serviços
+```sh
+docker-compose up -d
+```
+Executar o comando abaixo para parar os serviços
+```sh
+docker-compose stop
+```
+## 💻 Configuração Pgadmin
+- pgadmin: http://localhost:15432/
+<br>Host name/address: postgres-db
+<br>Username: postgres
+<br>Password: Postgres2023!
+![img.png](img.png)
+
+
 
 ## 🛠️ Execução de testes no projeto
 <hr>
