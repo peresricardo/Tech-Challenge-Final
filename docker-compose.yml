@@ -1,0 +1,67 @@
+services:
+  postgres-db:
+    image: postgres:latest
+    container_name: fase5-postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Postgres2023!
+      - POSTGRES_ENCONDING=UTF-8
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - fase5network
+
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - 15432:80
+    links:
+      - postgres-db
+    networks:
+      - fase5network
+
+  srv-discovery:
+    build: './srvDiscovery'
+    container_name: srv-discovery
+    ports:
+      - 8761:8761
+    networks:
+      - fase5network
+
+
+  srv-gateway:
+    build: './srvGateway'
+    container_name: srv-gateway
+    ports:
+      - 8080:8080
+    depends_on:
+      - srv-discovery
+    networks:
+      - fase5network
+
+
+  srv-cliente:
+    build: './srvCliente'
+    container_name: srv-cliente
+    ports:
+      - 9510:9510
+    depends_on:
+      - postgres-db
+      - srv-discovery
+      - srv-gateway
+    networks:
+      - fase5network
+
+
+networks:
+  fase5network:
+    external: true
