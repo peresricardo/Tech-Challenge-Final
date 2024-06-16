@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: srvItem
+  # Postgresql
+  datasource:
+    url: ${SP_DTSRC_URL:jdbc:postgresql://localhost:5432/srvItem}
+    username: ${SP_DTSRC_USERNAME:postgres}
+    password: ${SP_DTSRC_PASSWORD:Postgres2023!}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+
+openapi:
+  service:
+    title: service-item doc
+    version: 1.0.0
+    url: localhost:8080
+springdoc:
+  api-docs:
+    path: /itens/api-docs
+  swagger-ui:
+    path: /itens/swagger-ui.html
+
+# Others
+server:
+  port: 9511
+
+# Eureka
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: ${EUR_DEFAULTZONE:http://srv-discovery:8761/eureka}
