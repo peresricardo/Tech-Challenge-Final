@@ -13,12 +13,8 @@ import java.util.List;
 public class SwaggerConfig {
     @Bean
     public OpenAPI myOpenAPI() {
-        Server prdServer = new Server();
-        prdServer.setUrl("https://app-srvclientes.onrender.com");
-        prdServer.setDescription("Server Production");
-
         Server devServer = new Server();
-        devServer.setUrl("http://localhost:8080/documentacao/clientes");
+        devServer.setUrl("http://localhost:8080");
         devServer.setDescription("Server Development");
 
 
@@ -33,6 +29,6 @@ public class SwaggerConfig {
                 .description("Documentação dos endpoints da última fase. Fase V - Microserviços");
 
 
-        return new OpenAPI().info(info).servers(List.of(prdServer, devServer));
+        return new OpenAPI().info(info).servers(List.of(devServer));
     }
 }

@@ -10,6 +10,7 @@ services:
     ports:
       - 5432:5432
     volumes:
+      - ./01-database.sql:/docker-entrypoint-initdb.d/01-database.sql
       - ./data/postgres:/var/lib/postgresql/data
     networks:
       - fase5network
@@ -56,6 +57,7 @@ services:
       - 9510:9510
     depends_on:
       - postgres-db
+      - pgadmin
       - srv-discovery
       - srv-gateway
     networks:
