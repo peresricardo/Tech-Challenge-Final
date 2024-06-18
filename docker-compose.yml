@@ -61,6 +61,17 @@ services:
     networks:
       - fase5network
 
+  srv-item:
+    build: './srvItem'
+    container_name: srv-item
+    ports:
+      - 9511:9511
+    depends_on:
+      - postgres-db
+      - srv-discovery
+      - srv-gateway
+    networks:
+      - fase5network
 
 networks:
   fase5network:

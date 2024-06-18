@@ -18,20 +18,20 @@ import java.util.UUID;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID idItem;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private UUID id;
 
-    @Column(nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
-    @Column(nullable = false)
+    @Column(name = "descricao", nullable = false)
     private String descricao;
-    @Column(nullable = false)
+    @Column(name = "categoria", nullable = false)
     private String categoria;
-    @Column(nullable = false)
+    @Column(name = "preco", nullable = false)
     private BigDecimal preco;
-    @Column(nullable = false)
+    @Column(name = "url_imagem", nullable = false)
     private String urlImagem;
-    @Column(nullable = false)
+    @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
 

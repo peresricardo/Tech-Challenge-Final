@@ -48,8 +48,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void deletarItem(UUID id) {
+        itemRepository.findById(id)
+                .orElseThrow(() -> new MensagemNotFoundException("Item não encontrado com o id " + id));
         itemRepository.deleteById(id);
     }
-
-
 }

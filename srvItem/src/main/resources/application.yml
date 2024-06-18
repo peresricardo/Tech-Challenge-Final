@@ -29,11 +29,3 @@ springdoc:
 # Others
 server:
   port: 9511
-
-# Eureka
-#eureka:
-#  client:
-#    register-with-eureka: true
-#    fetch-registry: true
-#    service-url:
-#      defaultZone: ${EUR_DEFAULTZONE:http://srv-discovery:8761/eureka}
