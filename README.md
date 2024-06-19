@@ -28,7 +28,7 @@ Para simular um banco de dados para serviço, utilizamos a criação de Schemas 
 - dbPagamentos
 
 ## 💻 Configuração Pgadmin
-- pgadmin: http://localhost:15432/
+- pgadmin: http://localhost:15432/<br>
   ![img_1.png](img_1.png)
 <br><strong>Configuração do servidor</strong>
   <br>Host name/address: postgres-db
@@ -140,3 +140,12 @@ docker-compose stop
 mvn test
 mvn clean jacoco:prepare-agent install jacoco:report
 ```
+
+## Postman
+
+Na raiz do projeto existe uma pasta chamada <b>Postman</b> que contém a coleção de todos os serviços do projeto.
+Facilmente é possível importar as coleções dentro do Postman e utilizar os serviços.<br>
+
+Para utilizar o postman é necessário criar uma variável de ambiente chamada api-gateway:<br>
+![img_2.png](img_2.png)
+<br>
