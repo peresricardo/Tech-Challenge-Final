@@ -3,17 +3,26 @@ spring:
     name: srvItem
   # Postgresql
   datasource:
-    url: ${SP_DTSRC_URL:jdbc:postgresql://localhost:5432/srvItem}
+    url: ${SP_DTSRC_URL:jdbc:postgresql://postgres-db:5432/fase5}
     username: ${SP_DTSRC_USERNAME:postgres}
     password: ${SP_DTSRC_PASSWORD:Postgres2023!}
-    driver-class-name: org.postgresql.Driver
+    hikari:
+      schema: dbprodutos
   jpa:
     hibernate:
       ddl-auto: update
     properties:
+      jakarta:
+        persistence:
+          create-database-schemas: true
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: dbprodutos
+        jdbc:
+          lob:
+            non_contextual_creation: true
     show-sql: false
+    generate-ddl: true
 
 openapi:
   service:
@@ -25,6 +34,14 @@ springdoc:
     path: /itens/api-docs
   swagger-ui:
     path: /itens/swagger-ui.html
+
+# Eureka
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUR_DEFAULTZONE:http://srv-discovery:8761/eureka}
 
 # Others
 server:
