@@ -10,6 +10,7 @@ services:
     ports:
       - 5432:5432
     volumes:
+      - ./01-database.sql:/docker-entrypoint-initdb.d/01-database.sql
       - ./data/postgres:/var/lib/postgresql/data
     networks:
       - fase5network
@@ -69,6 +70,19 @@ services:
     container_name: srv-cliente
     ports:
       - 9510:9510
+    depends_on:
+      - postgres-db
+      - pgadmin
+      - srv-discovery
+      - srv-gateway
+    networks:
+      - fase5network
+
+  srv-item:
+    build: './srvItem'
+    container_name: srv-item
+    ports:
+      - 9511:9511
     depends_on:
       - postgres-db
       - srv-discovery

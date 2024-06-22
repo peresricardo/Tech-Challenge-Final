@@ -1,4 +1,4 @@
-package br.com.fiap.srvcliente.config;
+package br.com.fiap.srvItem.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;

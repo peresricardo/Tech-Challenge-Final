@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "92487101-d305-46e1-ba1e-f86c95466099",
+		"name": "Produtos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8184134",
+		"_collection_link": "https://speeding-eclipse-5759.postman.co/workspace/FIAP---FASE5~86ac1293-e463-496b-bfa4-0b5c829dd007/collection/8184134-92487101-d305-46e1-ba1e-f86c95466099?action=share&source=collection_link&creator=8184134"
+	},
+	"item": [
+		{
+			"name": "obterTodos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api-gateway}}/itens",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"itens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obterPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api-gateway}}/itens/74a17332-2ee8-4135-8a5b-4f69e715ef3a",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"itens",
+						"74a17332-2ee8-4135-8a5b-4f69e715ef3a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cadastrar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"nome\": \"Produto Teste 201\",\r\n    \"descricao\": \"Produto teste 201 Fiap\",\r\n    \"categoria\": \"Teste\",\r\n    \"preco\": 180.00,\r\n    \"urlImagem\": null,\r\n    \"quantidade\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-gateway}}/itens",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"itens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alterar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"nome\": \"Produto Teste - 201\",\r\n    \"descricao\": \"Produto teste 201 Fiap\",\r\n    \"categoria\": \"Teste\",\r\n    \"preco\": 180.00,\r\n    \"urlImagem\": null,\r\n    \"quantidade\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-gateway}}/itens/197509bb-9ff3-41d0-a3bb-b1f14b95962c",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"itens",
+						"197509bb-9ff3-41d0-a3bb-b1f14b95962c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "excluir",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"nome\": \"Produto Teste - 201\",\r\n    \"descricao\": \"Produto teste 201 Fiap\",\r\n    \"categoria\": \"Teste\",\r\n    \"preco\": 180.00,\r\n    \"urlImagem\": null,\r\n    \"quantidade\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-gateway}}/itens/197509bb-9ff3-41d0-a3bb-b1f14b95962c",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"itens",
+						"197509bb-9ff3-41d0-a3bb-b1f14b95962c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

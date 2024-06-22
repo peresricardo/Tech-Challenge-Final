@@ -1,19 +1,13 @@
 spring:
   application:
-    name: srvCliente
-# Postgresql
+    name: srvPagamento
+  # Postgresql
   datasource:
     url: ${SP_DTSRC_URL:jdbc:postgresql://postgres-db:5432/fase5}
     username: ${SP_DTSRC_USERNAME:postgres}
     password: ${SP_DTSRC_PASSWORD:Postgres2023!}
-
-   ## url: jdbc:postgresql://localhost:5432/postgres
-   ## username: postgres
-   ## password: 102030
-
-
     hikari:
-      schema: dbClientes
+      schema: dbPagamentos
   jpa:
     hibernate:
       ddl-auto: update
@@ -23,7 +17,7 @@ spring:
           create-database-schemas: true
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        default_schema: dbClientes
+        default_schema: dbPagamentos
         jdbc:
           lob:
             non_contextual_creation: true
@@ -32,30 +26,15 @@ spring:
 
 openapi:
   service:
-    title: service-cliente doc
+    title: service-pagamento doc
     version: 1.0.0
     url: localhost:8080
 springdoc:
   api-docs:
-    path: /clientes/api-docs
+    path: /pagamento/api-docs
   swagger-ui:
-    path: /clientes/swagger-ui.html
+    path: /pagamento/swagger-ui.html
 
 # Others
 server:
-  port: 9510
-
-# Eureka
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: ${EUR_DEFAULTZONE:http://srv-discovery:8761/eureka}
-    ##  defaultZone: http://localhost:8761/eureka
-
-# Viacep - busca endereco
-appviacep:
-  receive:
-    name: viacep
-    url: https://viacep.com.br/ws/
+  port: 9513
