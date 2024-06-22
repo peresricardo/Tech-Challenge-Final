@@ -8,11 +8,19 @@ spring:
           uri: lb://srvcliente
           predicates:
             - Path=/clientes/**
+
         - id: tbsrvclienteswagger
           uri: lb://srvcliente
           predicates:
             - Path=/clientes/api-docs
             - Method=GET
+
+        - id: tbsrvautenticacao
+          uri: lb://srvautenticacao
+          predicates:
+            - Path=/**
+          filters:
+            - AuthenticationFilter
 
 server:
   port: 8080
@@ -23,6 +31,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
+      #defaultZone: http://localhost:8761/eureka
       defaultZone: http://srv-discovery:8761/eureka
 
 # Swagger
