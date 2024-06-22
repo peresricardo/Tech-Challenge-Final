@@ -3,12 +3,12 @@ package br.com.fiap.srvItem.controller;
 import br.com.fiap.srvItem.model.Item;
 import br.com.fiap.srvItem.service.ItemService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,6 +32,13 @@ public class ItemController {
     public ResponseEntity<Item> buscarItemPorId(@PathVariable UUID id) {
         var item = itemService.buscarItemPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(item);
+    }
+
+    @GetMapping("/categoria/{categoria}")
+    @Operation(summary = "Obtém dados de um item existente por categoria", method = "GET")
+    public ResponseEntity<List<Item>> buscarItemPorCategoria(@PathVariable String categoria) {
+            List<Item> itens = itemService.buscarItemPorCategoria(categoria);
+            return ResponseEntity.ok(itens);
     }
 
     @PostMapping

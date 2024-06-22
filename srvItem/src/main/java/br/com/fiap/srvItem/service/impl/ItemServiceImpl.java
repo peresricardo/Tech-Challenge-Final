@@ -28,6 +28,15 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> buscarItemPorCategoria(String categoria) {
+        List<Item> itens = itemRepository.findByCategoria(categoria);
+        if (itens.isEmpty()) {
+            throw new MensagemNotFoundException("Nenhum item encontrado para a categoria: " + categoria);
+        }
+        return itens;
+    }
+
+    @Override
     public Item cadastrarItem(Item item) {
         return itemRepository.save(item);
     }

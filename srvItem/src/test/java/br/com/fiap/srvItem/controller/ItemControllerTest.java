@@ -67,6 +67,18 @@ class ItemControllerTest {
     }
 
     @Test
+    void buscarItensPorCategoria_DeveRetornarItem_QuandoItemExistir() {
+        String categoria = "Eletrônicos";
+        List<Item> itens = Arrays.asList(new Item(), new Item());
+        when(itemService.buscarItemPorCategoria(categoria)).thenReturn(itens);
+
+        ResponseEntity<List<Item>> response = itemController.buscarItemPorCategoria(categoria);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(2, response.getBody().size());
+    }
+
+    @Test
     public void cadastrarItem_DeveRetornarItemCriado_QuandoItemValido() {
         Item item = easyRandom.nextObject(Item.class);
 

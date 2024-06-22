@@ -9,6 +9,7 @@ public interface ItemService {
 
     List<Item> listarItens();
     Item buscarItemPorId(UUID id);
+    List<Item> buscarItemPorCategoria(String categoria);
     Item cadastrarItem(Item item);
     Item atualizarItem(UUID id, Item itemAtualizado);
     void deletarItem(UUID id);
