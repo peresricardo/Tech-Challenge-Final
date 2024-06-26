@@ -3,21 +3,18 @@ spring:
     name: srvAutenticacao
   # Postgresql
   datasource:
-    url: ${SP_DTSRC_URL:jdbc:postgresql://postgres-db:5433}
+    url: ${SP_DTSRC_URL:jdbc:postgresql://postgres-db:5432/fase5}
     username: ${SP_DTSRC_USERNAME:postgres}
     password: ${SP_DTSRC_PASSWORD:Postgres2023!}
-
-    ##url: jdbc:postgresql://localhost:5433/postgres
-    ##username: postgres
-    ##password: 102030
-
-
+    hikari:
+      schema: dbusuarios
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: dbusuarios
     show-sql: false
 
 openapi:
@@ -41,6 +38,9 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      ## defaultZone: http://localhost:8761/eureka
       defaultZone: http://srv-discovery:8761/eureka
 
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:batman batman batman}

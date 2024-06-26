@@ -15,22 +15,6 @@ services:
     networks:
       - fase5network
 
-  postgres-db-autenticador:
-    image: postgres:latest
-    container_name: fase5-postgres-aut
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Postgres2023!
-      - POSTGRES_ENCONDING=UTF-8
-    ports:
-      - 5433:5432
-    volumes:
-      - ./data/postgres:/var/lib/postgresql/data
-    networks:
-      - fase5network
-
-
   pgadmin:
     container_name: pgadmin4
     image: dpage/pgadmin4
@@ -44,6 +28,7 @@ services:
       - postgres-db
     networks:
       - fase5network
+
 
   srv-discovery:
     build: './srvDiscovery'

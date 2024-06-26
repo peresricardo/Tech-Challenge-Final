@@ -52,7 +52,10 @@ public class AuthenticationController {
 
     @GetMapping("/validate")
     public String validateToken(@RequestParam("token") String token) {
-        tokenService.validateToken(token);
-        return "Token is valid";
+        if (!tokenService.validateToken(token).isBlank()) {
+            return "Token is valid";
+        } else {
+            return "Token is not valid";
+        }
     }
 }
