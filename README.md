@@ -117,6 +117,13 @@ mvn clean install
 docker image build -t srv-item .
 ```
 
+- srvAutenticacao - Micro serviço de Autenticação<br>
+  cd srvAutenticacao
+```sh
+mvn clean install
+docker image build -t srv-autenticacao .
+```
+
 
 
 - É possível executar todos os serviços de uma única vez utilizado o arquivo docker-compose que se encontra na raiz da pasta principal do projeto.
