@@ -8,6 +8,8 @@ spring:
           uri: lb://srvcliente
           predicates:
             - Path=/clientes/**
+          filters:
+            - AuthenticationFilter
 
         - id: tbsrvclienteswagger
           uri: lb://srvcliente
@@ -15,10 +17,12 @@ spring:
             - Path=/clientes/api-docs
             - Method=GET
 
+
         - id: tbsrvautenticacao
           uri: lb://srvautenticacao
           predicates:
-            - Path=/**
+            - Path=/auth/**
+            - Path=/users/**
           filters:
             - AuthenticationFilter
 
@@ -26,11 +30,16 @@ spring:
           uri: lb://srvpagamento
           predicates:
             - Path=/pagamentos/**
+          filters:
+            - AuthenticationFilter
 
         - id: tbsrvprodutos
           uri: lb://srvitem
           predicates:
             - Path=/itens/**
+          filters:
+            - AuthenticationFilter
+
         - id: tbsrvprodutoswagger
           uri: lb://srvitem
           predicates:
