@@ -11,6 +11,7 @@ Todos os nossos micro-serviços foram desenvolvidos utlizando a versão <b>21 do
 - [x] Pgadmin
 - [x] Service-Discovery
 - [x] Service-Gateway
+- [x] Service-Autenticacao
 - [x] Service-Cliente
 - [x] Service-Item
 - [ ] Service-Pagamento
@@ -48,6 +49,10 @@ Serviço em Spring Boot 3 utilizando Eureka Server para que seja possível regis
 Serviço em Spring Boot 3 utilizando Gateway para que seja possível centralizar todos os micros serviços da aplicação
 em um único endereço, facilitando a utilização de todos os serviços com chamada única
 
+### 🔹Service-Autenticacao
+Serviço em Spring Boot 3<br>
+Esse serviço é utilizado para efetuar a autenticação de todos os serviços utilizados no projeto para gerar um token
+que será validado por todos os serviços.
 
 ### 🔹Service-Cliente
 Serviço em Spring Boot 3 utilizando:
