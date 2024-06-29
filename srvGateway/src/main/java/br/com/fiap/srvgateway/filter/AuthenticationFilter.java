@@ -7,17 +7,12 @@ import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 @Component
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
 
     @Autowired
     private RouteValidator validator;
-
-    @Autowired
-    private RestTemplate template;
-
     @Autowired
     private JwtUtil jwtUtil;
 
@@ -27,6 +22,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 
     @Override
     public GatewayFilter apply(Config config) {
+        System.out.println("Entrando no filtro do Gateway");
         return ((exchange, chain) -> {
             if (validator.isSecured.test(exchange.getRequest())) {
                 //header contains token or not
@@ -39,8 +35,6 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     authHeader = authHeader.substring(7);
                 }
                 try {
-                    //REST call to AUTH service
-                   // template.getForObject("http://SrvAutenticacaoApplication:9898/auth/validate?token=" + authHeader, String.class);
                     jwtUtil.validateToken(authHeader);
                 } catch (Exception e) {
                     System.out.println("invalid access...!");
@@ -51,7 +45,5 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
         });
     }
 
-    public static class Config {
-
-    }
+    public static class Config {}
 }
