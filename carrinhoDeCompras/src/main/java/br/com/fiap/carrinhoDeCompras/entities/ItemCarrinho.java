@@ -1,14 +1,13 @@
 package br.com.fiap.carrinhoDeCompras.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
 @Table(name = "item_carrinho")
@@ -19,9 +18,9 @@ import java.math.BigDecimal;
 public class ItemCarrinho {
 
     @Id
-    private Long idItem;
-    private String nomeItem;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private UUID idItem;
     private Integer quantidade;
-    private BigDecimal precoUnitario;
 
 }

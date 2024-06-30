@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -13,10 +14,12 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class ItemDto {
 
-    private Long id;
+    private UUID id;
     private String nome;
     private String descricao;
-    private Integer quantidadeEstoque;
+    private String categoria;
     private BigDecimal preco;
+    private String urlImagem;
+    private Integer quantidade;
 
 }

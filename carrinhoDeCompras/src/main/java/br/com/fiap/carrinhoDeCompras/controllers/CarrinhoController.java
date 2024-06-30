@@ -12,24 +12,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/carrinho")
+@RequestMapping("/carrinhos")
 @Tag(name = "Gestão do Carrinho de Compras", description = "Controller para manutenção na Gestão do Carrinho de Compras")
 public class CarrinhoController {
 
     @Autowired
     private CarrinhoService carrinhoService;
 
-    @GetMapping(value = "/listarItens", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Lista todos os itens no carrinho", method = "GET")
-    public ResponseEntity<List<Carrinho>> listarItensNoCarrinho() {
-        return new ResponseEntity<>(carrinhoService.listarItens(), HttpStatus.OK);
+    public ResponseEntity<List<Carrinho>> listarCarrinho() {
+        return new ResponseEntity<>(carrinhoService.listarCarrinhos(), HttpStatus.OK);
+    }
+
+    @GetMapping("/porId/{id}")
+    @Operation(summary = "Obtem um carrinho por id", method = "GET")
+    public ResponseEntity<Carrinho> buscarItemPorId(@PathVariable Long id) {
+        var carrinho = carrinhoService.buscarCarrinhoPorId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(carrinho);
     }
 
     @PostMapping
-    @Operation(summary = "Criar um novo Carrinho", method = "POST")
+    @Operation(summary = "Cria um Carrinho", method = "POST")
     public ResponseEntity<Carrinho> criarCarrinho(@RequestBody Carrinho carrinho, @RequestParam Long idCliente) {
         Carrinho carrinhoResponse = carrinhoService.criarCarrinho(carrinho, idCliente);
         return new ResponseEntity<>(carrinhoResponse, HttpStatus.CREATED);

@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -20,11 +19,10 @@ public class Carrinho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCarrinho;
-    @ManyToOne
-    @JoinColumn(name = "id_cliente")
-    private Cliente cliente;
+//    @ManyToOne
+//    @JoinColumn(name = "id_cliente")
+//    private Cliente cliente;
     @OneToMany
     private List<ItemCarrinho> itens;
-    private BigDecimal totalPedido;
 
 }

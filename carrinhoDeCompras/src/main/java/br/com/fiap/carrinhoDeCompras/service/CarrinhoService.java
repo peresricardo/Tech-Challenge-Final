@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface CarrinhoService {
 
-    List<Carrinho> listarItens();
+    List<Carrinho> listarCarrinhos();
+
+    Carrinho buscarCarrinhoPorId(Long id);
 
     Carrinho criarCarrinho(Carrinho carrinho, Long idCliente);
 
