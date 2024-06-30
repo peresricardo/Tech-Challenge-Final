@@ -38,7 +38,6 @@ services:
     networks:
       - fase5network
 
-
   srv-gateway:
     build: './srvGateway'
     container_name: srv-gateway
@@ -48,7 +47,6 @@ services:
       - srv-discovery
     networks:
       - fase5network
-
 
   srv-cliente:
     build: './srvCliente'

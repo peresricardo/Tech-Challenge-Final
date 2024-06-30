@@ -17,14 +17,31 @@ spring:
             - Path=/clientes/api-docs
             - Method=GET
 
-
         - id: tbsrvautenticacao
           uri: lb://srvautenticacao
           predicates:
             - Path=/auth/**
+          filters:
+            - AuthenticationFilter
+
+        - id: tbsrvautenticacaousers
+          uri: lb://srvautenticacao
+          predicates:
             - Path=/users/**
           filters:
             - AuthenticationFilter
+
+        - id: tbsrvauthswagger
+          uri: lb://srvautenticacao
+          predicates:
+            - Path=/auth/api-docs
+            - Method=GET
+
+        - id: tbsrvauthusersswagger
+          uri: lb://srvautenticacao
+          predicates:
+            - Path=/users/api-docs
+            - Method=GET
 
         - id: tbsrvpagamento
           uri: lb://srvpagamento
@@ -67,9 +84,18 @@ springdoc:
     path: /swagger-ui.html
     config-url: /api-docs/swagger-config
     urls:
+      - url: /auth/api-docs
+        name: Autenticacao Service
+      - url: /users/api-docs
+        name: Usuario Service
       - url: /clientes/api-docs
         name: Cliente Service
       - url: /itens/api-docs
         name: Produtos Service
       - url: /pagamentos/api-docs
         name: Pagamentos Service
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:batman batman batman}

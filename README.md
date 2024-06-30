@@ -94,6 +94,15 @@ docker network create fase5network
 
 ### Limpar, compilar e gerar imagem para o docker
 
+Na raiz do projeto existe um arquivo chamado buildAll.bat, executando esse arquivo ele irá
+fazer o build, gerar a imagem docker automaticamente de todos os serviços.
+
+```sh
+Para executar o arquivo execute um prompt de command "cmd" ou PowerShell
+buildAll
+```
+
+
 - SrvDiscovery - Serviço de registro dos micros serviços<br>
   cd srvDiscovery
 ```sh

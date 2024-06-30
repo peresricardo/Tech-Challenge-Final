@@ -6,6 +6,8 @@ import com.fiap.srvautenticacao.request.UserAuthRequest;
 import com.fiap.srvautenticacao.request.UserRequest;
 import com.fiap.srvautenticacao.response.UserResponse;
 import com.fiap.srvautenticacao.security.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
+@Tag(name = "Autenticação", description = "Endpoint para registro de usuários, login e validação de token")
 public class AuthenticationController {
     
     @Autowired
@@ -29,6 +32,7 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("/login")
+    @Operation(summary = "Efetua o login", method = "POST")
     public ResponseEntity login(@RequestBody @Valid UserAuthRequest data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
@@ -39,6 +43,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
+    @Operation(summary = "Registra um novo usuário", method = "POST")
     public ResponseEntity register(@RequestBody @Valid UserRequest data){
         if(this.repository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 
@@ -51,6 +56,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/validate")
+    @Operation(summary = "Validação de token", method = "GET")
     public String validateToken(@RequestParam("token") String token) {
         if (!tokenService.validateToken(token).isBlank()) {
             return "Token is valid";
