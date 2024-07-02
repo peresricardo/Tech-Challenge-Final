@@ -18,7 +18,7 @@ public class SwaggerConfig {
         devServer.setDescription("Server Production");
 
         Server prodServer = new Server();
-        prodServer.setUrl("https://localhost:8089");
+        prodServer.setUrl("https://localhost:8080");
         prodServer.setDescription("Server Development");
 
         Contact contact = new Contact();

@@ -14,6 +14,7 @@ Todos os nossos micro-serviços foram desenvolvidos utlizando a versão <b>21 do
 - [x] Service-Autenticacao
 - [x] Service-Cliente
 - [x] Service-Item
+- [x] Service-Carrinho
 - [ ] Service-Pagamento
 
 <hr>
@@ -72,6 +73,7 @@ Para persistir os dados está sendo utilizado o banco Postgre no schema dbProdut
 ## 📑 Swagger Documentação
 - Microserviço de Clientes - http://localhost:8080/clientes/swagger-ui.html
 - Microserviço de Produtos - http://localhost:8080/itens/swagger-ui.html
+- Microserviço de Carrinhos - http://localhost:8080/carrinhos/swagger-ui.html
 <br>
 <br>
 

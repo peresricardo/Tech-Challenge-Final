@@ -63,6 +63,19 @@ spring:
             - Path=/itens/api-docs
             - Method=GET
 
+        - id: tbsrvcarrinho
+          uri: lb://srvcarrinho
+          predicates:
+            - Path=/carrinhos/**
+          filters:
+            - AuthenticationFilter
+
+        - id: tbsrvcarrinhosswagger
+          uri: lb://srvcarrinho
+          predicates:
+            - Path=/carrinhos/api-docs
+            - Method=GET
+
 server:
   port: 8080
 
@@ -94,6 +107,8 @@ springdoc:
         name: Produtos Service
       - url: /pagamentos/api-docs
         name: Pagamentos Service
+      - url: /carrinhos/api-docs
+        name: Carrinhos Service
 
 api:
   security:

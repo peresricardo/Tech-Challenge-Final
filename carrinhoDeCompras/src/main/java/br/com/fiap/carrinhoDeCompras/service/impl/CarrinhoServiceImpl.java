@@ -12,7 +12,8 @@ import br.com.fiap.carrinhoDeCompras.service.CarrinhoService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,14 +27,17 @@ public class CarrinhoServiceImpl implements CarrinhoService {
     private final ItemCarrinhoRepository itemCarrinhoRepository;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    private final ClienteEndpointService clienteEndpointService;
 
     @Autowired
-    public CarrinhoServiceImpl(CarrinhoRepository carrinhoRepository, ItemCarrinhoRepository itemCarrinhoRepository, RestTemplate restTemplate,
-                             ObjectMapper objectMapper) {
+    public CarrinhoServiceImpl(CarrinhoRepository carrinhoRepository, ItemCarrinhoRepository itemCarrinhoRepository,
+                               RestTemplate restTemplate, ObjectMapper objectMapper,
+                               ClienteEndpointService clienteEndpointService) {
         this.carrinhoRepository = carrinhoRepository;
         this.itemCarrinhoRepository = itemCarrinhoRepository;
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
+        this.clienteEndpointService = clienteEndpointService;
     }
 
     @Override
@@ -48,9 +52,13 @@ public class CarrinhoServiceImpl implements CarrinhoService {
     }
 
     @Override
-    public Carrinho criarCarrinho(Carrinho carrinho, Long idCliente) {
-//        Cliente cliente = getClienteById(idCliente);
-//        carrinho.setCliente(cliente);
+    public Carrinho criarCarrinho(Carrinho carrinho) {
+        if (carrinho.getIdCliente() != null) {
+            Cliente cliente = verificaCliente(carrinho.getIdCliente());
+            if (cliente == null) {
+                throw new RuntimeException("Cliente não cadastrado...");
+            }
+        }
 
         //recupera itens
         List<ItemDto> itens = this.recuperaItens(carrinho.getItens());
@@ -77,7 +85,13 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 
         itemCarrinhoRepository.saveAll(carrinho.getItens());
 
-//        carrinhoExistente.setCliente(carrinho.getCliente());
+        if (carrinho.getIdCliente() != null) {
+            Cliente cliente = verificaCliente(carrinho.getIdCliente());
+            if (cliente == null) {
+                throw new RuntimeException("Cliente não cadastrado...");
+            }
+        }
+
         carrinhoExistente.setItens(carrinho.getItens());
 
         return carrinhoRepository.save(carrinhoExistente);
@@ -89,39 +103,15 @@ public class CarrinhoServiceImpl implements CarrinhoService {
         return true;
     }
 
-//    private Cliente getClienteById(Long idCliente) {
-//        ResponseEntity<String> response = restTemplate.getForEntity(
-//                "http://localhost:8090/clientes/{id}",
-//                String.class,
-//                idCliente
-//        );
-//
-//        if (response == null || response.getStatusCode() == HttpStatus.NOT_FOUND) {
-//            throw new IllegalArgumentException("Cliente não encontrado com ID: " + idCliente);
-//        }
-//        try {
-//            JsonNode clienteJson = objectMapper.readTree(response.getBody());
-//            Endereco endereco = new Endereco(
-//                    clienteJson.get("endereco").get("logradouro").asText(),
-//                    clienteJson.get("endereco").get("bairro").asText(),
-//                    clienteJson.get("endereco").get("cep").asText(),
-//                    clienteJson.get("endereco").get("cidade").asText(),
-//                    clienteJson.get("endereco").get("uf").asText(),
-//                    clienteJson.get("endereco").get("complemento").asText(),
-//                    clienteJson.get("endereco").get("numero").asText()
-//            );
-//            return Cliente.builder()
-//                    .idCliente(clienteJson.get("idCliente").asLong())
-//                    .nome(clienteJson.get("nome").asText())
-//                    .telefone(clienteJson.get("telefone").asText())
-//                    .cpf(clienteJson.get("cpf").asText())
-//                    .email(clienteJson.get("email").asText())
-//                    .endereco(endereco)
-//                    .build();
-//        } catch (IOException e) {
-//            throw new RuntimeException("Não foi possível processar o cliente", e);
-//        }
-//    }
+    private Cliente verificaCliente(UUID id)  {
+        System.out.println("Accessando endpoint cliente.");
+
+        var cliente = clienteEndpointService.buscarClientePorId(id);
+        if (cliente.getStatusCode() != HttpStatus.OK) {
+            throw new RuntimeException("Cliente não encontrado");
+        }
+        return cliente.getBody();
+    }
 
     private List<ItemDto> recuperaItens(List<ItemCarrinho> itensCarrinho) {
         List<ItemDto> itens = new ArrayList<>();
@@ -132,7 +122,7 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 
         for (ItemCarrinho itemCarrinho : itensCarrinho) {
             ResponseEntity<String> response = restTemplate.getForEntity(
-                    "http://localhost:9511/itens/{id}",
+                    "http://srv-item:9511/itens/{id}",
                     String.class,
                     itemCarrinho.getIdItem()
             );
@@ -158,7 +148,6 @@ public class CarrinhoServiceImpl implements CarrinhoService {
                     throw new RuntimeException("não foi possível fazer a conexão com o app de itens");
                 }
             }
-
             itens.add(item);
         }
         return itens;
@@ -174,5 +163,4 @@ public class CarrinhoServiceImpl implements CarrinhoService {
         }
 
     }
-
 }

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "tb_cliente")
 @Data
@@ -13,14 +15,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCliente;
-
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID idCliente;
+    @Column(nullable = false, length = 60)
     private String nome;
-    private String telefone;
-    private String cpf;
+    @Column(length = 80)
     private String email;
 
     @Embedded

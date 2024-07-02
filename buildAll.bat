@@ -58,3 +58,15 @@ call docker image build -t srv-item .
 pause
 echo ### Fim Compilacao srvItem ###
 cd ..
+
+cls
+echo ### Compilando srvCarrinho ###
+cd carrinhoDeCompras
+rmdir /s /q target
+call mvn clean install -U
+pause
+echo ### Gerando imagem Docker ###
+call docker image build -t srv-carrinho .
+pause
+echo ### Fim Compilacao srvCarrinho ###
+cd ..

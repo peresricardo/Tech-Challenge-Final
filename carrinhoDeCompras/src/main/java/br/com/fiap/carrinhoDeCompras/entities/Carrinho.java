@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_carrinho")
@@ -19,9 +20,7 @@ public class Carrinho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCarrinho;
-//    @ManyToOne
-//    @JoinColumn(name = "id_cliente")
-//    private Cliente cliente;
+    private UUID idCliente;
     @OneToMany
     private List<ItemCarrinho> itens;
 

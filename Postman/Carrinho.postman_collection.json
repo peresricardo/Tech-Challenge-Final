@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "b12f0813-e4b2-40c8-9b29-4c0f204a0ac8",
+		"name": "Carrinho",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8184134",
+		"_collection_link": "https://speeding-eclipse-5759.postman.co/workspace/FIAP---FASE5~86ac1293-e463-496b-bfa4-0b5c829dd007/collection/8184134-b12f0813-e4b2-40c8-9b29-4c0f204a0ac8?action=share&source=collection_link&creator=8184134"
+	},
+	"item": [
+		{
+			"name": "cadastrar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InJwZXJlcyIsImV4cCI6MTcxOTg5NjQzOH0.bjsN6juImRJRU5VeFgjcAYxFUd_xct8-tSCodHlYEiw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"idCarrinho\": 1,\r\n  \"idCliente\": \"ac303ee1-b284-4c26-b5f4-bd6a378ba005\",\r\n  \"itens\": [\r\n    {\r\n      \"id\": 1,\r\n      \"idItem\": \"24b51831-9c53-49e1-bc94-a927f066051e\",\r\n      \"quantidade\": 1\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9515/carrinhos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9515",
+					"path": [
+						"carrinhos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obterTodos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InJwZXJlcyIsImV4cCI6MTcxOTg4OTA1Mn0.EgDw5wOSScdTCVrkQRHofnE_-isAmvWFm686qHpsWpM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"idCarrinho\": 1,\r\n  \"cliente\": {\r\n    \"idCliente\": \"5e8b672e-a93d-47ff-9828-fc0df9f3f5c2\",\r\n    \"nome\": \"Cliente Teste\",\r\n    \"email\": \"email@email.com.br\",\r\n    \"endereco\": {\r\n      \"logradouro\": \"string\",\r\n      \"bairro\": \"string\",\r\n      \"cep\": \"string\",\r\n      \"cidade\": \"string\",\r\n      \"uf\": \"string\",\r\n      \"complemento\": \"string\",\r\n      \"numero\": \"string\"\r\n    }\r\n  },\r\n  \"itens\": [\r\n    {\r\n      \"id\": 0,\r\n      \"idItem\": \"fc6d1549-eeec-44ec-81f6-e86413584cab\",\r\n      \"quantidade\": 2\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-gateway}}/carrinhos",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"carrinhos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obterPorId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InJwZXJlcyIsImV4cCI6MTcxOTg4OTA1Mn0.EgDw5wOSScdTCVrkQRHofnE_-isAmvWFm686qHpsWpM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"idCarrinho\": 1,\r\n  \"cliente\": {\r\n    \"idCliente\": \"5e8b672e-a93d-47ff-9828-fc0df9f3f5c2\",\r\n    \"nome\": \"Cliente Teste\",\r\n    \"email\": \"email@email.com.br\",\r\n    \"endereco\": {\r\n      \"logradouro\": \"string\",\r\n      \"bairro\": \"string\",\r\n      \"cep\": \"string\",\r\n      \"cidade\": \"string\",\r\n      \"uf\": \"string\",\r\n      \"complemento\": \"string\",\r\n      \"numero\": \"string\"\r\n    }\r\n  },\r\n  \"itens\": [\r\n    {\r\n      \"id\": 0,\r\n      \"idItem\": \"fc6d1549-eeec-44ec-81f6-e86413584cab\",\r\n      \"quantidade\": 2\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-gateway}}/carrinhos/porId/1",
+					"host": [
+						"{{api-gateway}}"
+					],
+					"path": [
+						"carrinhos",
+						"porId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

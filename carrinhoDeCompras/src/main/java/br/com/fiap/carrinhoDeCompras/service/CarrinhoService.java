@@ -10,7 +10,7 @@ public interface CarrinhoService {
 
     Carrinho buscarCarrinhoPorId(Long id);
 
-    Carrinho criarCarrinho(Carrinho carrinho, Long idCliente);
+    Carrinho criarCarrinho(Carrinho carrinho);
 
     Carrinho atualizarCarrinho(Long id, Carrinho carrinhoNovo);
 

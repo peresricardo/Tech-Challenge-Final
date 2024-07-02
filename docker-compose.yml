@@ -85,6 +85,19 @@ services:
     networks:
       - fase5network
 
+  srv-carrinho:
+    build: './carrinhoDeCompras'
+    container_name: srv-carrinho
+    ports:
+      - 9515:9515
+    depends_on:
+      - postgres-db
+      - pgadmin
+      - srv-discovery
+      - srv-gateway
+    networks:
+      - fase5network
+
 networks:
   fase5network:
     external: true

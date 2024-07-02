@@ -38,8 +38,8 @@ public class CarrinhoController {
 
     @PostMapping
     @Operation(summary = "Cria um Carrinho", method = "POST")
-    public ResponseEntity<Carrinho> criarCarrinho(@RequestBody Carrinho carrinho, @RequestParam Long idCliente) {
-        Carrinho carrinhoResponse = carrinhoService.criarCarrinho(carrinho, idCliente);
+    public ResponseEntity<Carrinho> criarCarrinho(@RequestBody Carrinho carrinho) {
+        Carrinho carrinhoResponse = carrinhoService.criarCarrinho(carrinho);
         return new ResponseEntity<>(carrinhoResponse, HttpStatus.CREATED);
     }
 
