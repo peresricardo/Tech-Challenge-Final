@@ -74,6 +74,7 @@ Para persistir os dados está sendo utilizado o banco Postgre no schema dbProdut
 - Microserviço de Clientes - http://localhost:8080/clientes/swagger-ui.html
 - Microserviço de Produtos - http://localhost:8080/itens/swagger-ui.html
 - Microserviço de Carrinhos - http://localhost:8080/carrinhos/swagger-ui.html
+- Microserviço de Autenticação - http://localhost:8080/auth/swagger-ui.html
 <br>
 <br>
 
@@ -140,6 +141,12 @@ mvn clean install
 docker image build -t srv-autenticacao .
 ```
 
+- srvCariinho - Micro serviço de Carrinho<br>
+  cd carrinhoDeCompras
+```sh
+mvn clean install
+docker image build -t srv-carrinho .
+```
 
 
 - É possível executar todos os serviços de uma única vez utilizado o arquivo docker-compose que se encontra na raiz da pasta principal do projeto.
