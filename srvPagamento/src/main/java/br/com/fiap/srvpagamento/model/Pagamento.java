@@ -18,6 +18,8 @@ public class Pagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private Long idCarrinho;
+
     private double valor;
 
     @Enumerated(EnumType.STRING)

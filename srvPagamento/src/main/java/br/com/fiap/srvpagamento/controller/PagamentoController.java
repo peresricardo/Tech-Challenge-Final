@@ -19,8 +19,8 @@ public class PagamentoController {
     }
 
     @PostMapping("/pagamento")
-    public ResumoPagamentoDTO realizarPagamento(@RequestBody Pagamento pagamento, @RequestParam Long idCarrinho) {
-        return pagamentoService.realizarPagamento(pagamento, idCarrinho);
+    public ResumoPagamentoDTO realizarPagamento(@RequestBody Pagamento pagamento) {
+        return pagamentoService.realizarPagamento(pagamento, pagamento.getIdCarrinho());
     }
 
 }

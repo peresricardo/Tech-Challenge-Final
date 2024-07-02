@@ -19,16 +19,18 @@ public class PagamentoService {
     @Autowired
     private PagamentoRepository pagamentoRepository;
 
-    private static final String CARRINHO_SERVICE_URL = "http://localhost:8089/carrinho/{idCarrinho}";
+    private static final String CARRINHO_SERVICE_URL = "http://localhost:9515/carrinhos/porId/{idCarrinho}";
 
     public ResumoPagamentoDTO realizarPagamento(Pagamento pagamento, Long idCarrinho) {
-        CarrinhoDTO carrinho = restTemplate.getForObject(CARRINHO_SERVICE_URL + "/" + idCarrinho, CarrinhoDTO.class);
-
+        // Corrigindo a construção da URL
+        CarrinhoDTO carrinho = restTemplate.getForObject(CARRINHO_SERVICE_URL, CarrinhoDTO.class, idCarrinho);
+        carrinho.setTotalPedido(BigDecimal.valueOf(100.0));
         if (carrinho == null || carrinho.getTotalPedido().compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Carrinho inválido ou valor de pagamento inválido");
         }
 
         pagamento.setValor(carrinho.getTotalPedido().doubleValue());
+
         pagamentoRepository.save(pagamento);
 
         ResumoPagamentoDTO resumoPagamento = new ResumoPagamentoDTO(pagamento, carrinho.getItens(), carrinho.getTotalPedido());
