@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemCarrinhoDTO {
-    private Long id;
+    private String idItem;
     private String nome;
     private String descricao;
     private Integer quantidade;

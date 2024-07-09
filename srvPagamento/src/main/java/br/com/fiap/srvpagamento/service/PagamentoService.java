@@ -1,6 +1,7 @@
 package br.com.fiap.srvpagamento.service;
 
 import br.com.fiap.srvpagamento.dto.CarrinhoDTO;
+import br.com.fiap.srvpagamento.dto.ItemCarrinhoDTO;
 import br.com.fiap.srvpagamento.dto.ResumoPagamentoDTO;
 import br.com.fiap.srvpagamento.model.Pagamento;
 import br.com.fiap.srvpagamento.repository.PagamentoRepository;
@@ -24,12 +25,18 @@ public class PagamentoService {
     public ResumoPagamentoDTO realizarPagamento(Pagamento pagamento, Long idCarrinho) {
         // Corrigindo a construção da URL
         CarrinhoDTO carrinho = restTemplate.getForObject(CARRINHO_SERVICE_URL, CarrinhoDTO.class, idCarrinho);
-        carrinho.setTotalPedido(BigDecimal.valueOf(100.0));
-        if (carrinho == null || carrinho.getTotalPedido().compareTo(BigDecimal.ZERO) <= 0) {
+
+        if (carrinho == null) {
             throw new IllegalArgumentException("Carrinho inválido ou valor de pagamento inválido");
         }
+        BigDecimal total = BigDecimal.ZERO;
+        for (ItemCarrinhoDTO item : carrinho.getItens()) {
+            BigDecimal itemTotal = item.getPreco().multiply(BigDecimal.valueOf(item.getQuantidade()));
+            total = total.add(itemTotal);
+            carrinho.setTotalPedido(BigDecimal.valueOf(total.doubleValue()));
+        }
 
-        pagamento.setValor(carrinho.getTotalPedido().doubleValue());
+        pagamento.setValor(total.doubleValue());
 
         pagamentoRepository.save(pagamento);
 
