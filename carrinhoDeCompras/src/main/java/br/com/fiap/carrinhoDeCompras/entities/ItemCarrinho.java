@@ -22,5 +22,8 @@ public class ItemCarrinho {
     private Long id;
     private UUID idItem;
     private Integer quantidade;
+    private String nome;
+    private String descricao;
+    private BigDecimal preco;
 
 }

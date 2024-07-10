@@ -60,6 +60,16 @@ public class CarrinhoServiceImpl implements CarrinhoService {
             }
         }
 
+        if(carrinho.getItens() == null) {
+            throw new RuntimeException("carrinho sem itens");
+        }
+
+        for (ItemCarrinho item : carrinho.getItens()) {
+            if (item.getIdItem() == null || item.getQuantidade() == null) {
+                throw new RuntimeException("campo idItem e quantidade são obrigatórios dentro de item");
+            }
+        }
+
         //recupera itens
         List<ItemDto> itens = this.recuperaItens(carrinho.getItens());
 
@@ -75,7 +85,21 @@ public class CarrinhoServiceImpl implements CarrinhoService {
     public Carrinho atualizarCarrinho(Long id, Carrinho carrinho) {
         Carrinho carrinhoExistente = this.buscarCarrinhoPorId(id);
 
+        if (carrinhoExistente == null) {
+            throw new RuntimeException("carrinho inexistente");
+        }
+
         itemCarrinhoRepository.deleteAll();
+
+        if(carrinho.getItens() == null) {
+            throw new RuntimeException("carrinho sem itens");
+        }
+
+        for (ItemCarrinho item : carrinho.getItens()) {
+            if (item.getIdItem() == null || item.getQuantidade() == null) {
+                throw new RuntimeException("campo idItem e quantidade são obrigatórios dentro de item");
+            }
+        }
 
         //recupera itens
         List<ItemDto> itens = this.recuperaItens(carrinho.getItens());
@@ -160,7 +184,11 @@ public class CarrinhoServiceImpl implements CarrinhoService {
                         + " não tem a quantidade desejada (" + itensCarrinho.get(i).getQuantidade() + ") no estoque." +
                         " Total: " + itens.get(i).getQuantidade());
             }
-        }
 
+            itensCarrinho.get(i).setNome(itens.get(i).getNome());
+            itensCarrinho.get(i).setDescricao(itens.get(i).getDescricao());
+            itensCarrinho.get(i).setPreco(itens.get(i).getPreco());
+        }
     }
+
 }
