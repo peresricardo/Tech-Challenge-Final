@@ -15,7 +15,7 @@ Todos os nossos micro-serviços foram desenvolvidos utlizando a versão <b>21 do
 - [x] Service-Cliente
 - [x] Service-Item
 - [x] Service-Carrinho
-- [ ] Service-Pagamento
+- [x] Service-Pagamento
 
 <hr>
 
@@ -61,12 +61,20 @@ Jpa - Actuator - Discovery Client e OpenFeign<br>
 OpenFeign é utilizado para efetuar busca de endereço por Cep, utilizando o serviço ViaCep<br>
 Para persistir os dados está sendo utilizado o banco Postgre no schema dbClientes
 
-
 ### 🔹Service-Item - Produtos
 Serviço em Spring Boot 3 utilizando:
 Jpa - Actuator e Discovery Client<br>
 Para persistir os dados está sendo utilizado o banco Postgre no schema dbProdutos
 
+### 🔹Service-Carrinho
+Serviço em Spring Boot 3 utilizando:
+Jpa - Actuator e Discovery Client<br>
+Para persistir os dados está sendo utilizado o banco Postgre no schema dbPedidos
+
+### 🔹Service-Pagamento
+Serviço em Spring Boot 3 utilizando:
+Jpa - Actuator e Discovery Client<br>
+Para persistir os dados está sendo utilizado o banco Postgre no schema dbPagamentos
 
 <br>
 
@@ -75,6 +83,7 @@ Para persistir os dados está sendo utilizado o banco Postgre no schema dbProdut
 - Microserviço de Produtos - http://localhost:8080/itens/swagger-ui.html
 - Microserviço de Carrinhos - http://localhost:8080/carrinhos/swagger-ui.html
 - Microserviço de Autenticação - http://localhost:8080/auth/swagger-ui.html
+- Microserviço de Pagamentos - http://localhost:8080/pagamento/swagger-ui.html
 <br>
 <br>
 
@@ -141,13 +150,19 @@ mvn clean install
 docker image build -t srv-autenticacao .
 ```
 
-- srvCariinho - Micro serviço de Carrinho<br>
+- srvCarrinho - Micro serviço de Carrinho<br>
   cd carrinhoDeCompras
 ```sh
 mvn clean install
 docker image build -t srv-carrinho .
 ```
 
+- srvPagamento - Micro serviço de Pagamento<br>
+  cd srvPagamento
+```sh
+mvn clean install
+docker image build -t srv-pagamento .
+```
 
 - É possível executar todos os serviços de uma única vez utilizado o arquivo docker-compose que se encontra na raiz da pasta principal do projeto.
 <br>Executar o comando abaixo para iniciar os serviços

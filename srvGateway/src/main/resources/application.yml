@@ -50,6 +50,12 @@ spring:
           filters:
             - AuthenticationFilter
 
+        - id: tbsrvpagamentoswagger
+          uri: lb://srvpagamento
+          predicates:
+            - Path=/pagamentos/api-docs
+            - Method=GET
+
         - id: tbsrvprodutos
           uri: lb://srvitem
           predicates:

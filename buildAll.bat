@@ -60,6 +60,18 @@ echo ### Fim Compilacao srvItem ###
 cd ..
 
 cls
+echo ### Compilando srvPagamento ###
+cd srvPagamento
+rmdir /s /q target
+call mvn clean install -U
+pause
+echo ### Gerando imagem Docker ###
+call docker image build -t srv-pagamento .
+pause
+echo ### Fim Compilacao srvPagamento ###
+cd ..
+
+cls
 echo ### Compilando srvCarrinho ###
 cd carrinhoDeCompras
 rmdir /s /q target

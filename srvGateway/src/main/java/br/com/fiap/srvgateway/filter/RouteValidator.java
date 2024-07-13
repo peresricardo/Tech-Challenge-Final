@@ -21,6 +21,10 @@ public class RouteValidator {
             "/itens/swagger-ui.html",
             "/itens/api-docs",
 
+            "/pagamentos/swagger-ui/**",
+            "/pagamentos/swagger-ui.html",
+            "/pagamentos/api-docs",
+
             "/carrinhos/swagger-ui/**",
             "/carrinhos/swagger-ui.html",
             "/carrinhos/api-docs",

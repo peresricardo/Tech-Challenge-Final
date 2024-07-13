@@ -98,6 +98,19 @@ services:
     networks:
       - fase5network
 
+  srv-pagamento:
+    build: './srvPagamento'
+    container_name: srv-pagamento
+    ports:
+      - 9513:9513
+    depends_on:
+      - postgres-db
+      - pgadmin
+      - srv-discovery
+      - srv-gateway
+    networks:
+      - fase5network
+
 networks:
   fase5network:
     external: true
