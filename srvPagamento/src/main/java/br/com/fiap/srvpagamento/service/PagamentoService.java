@@ -23,11 +23,10 @@ public class PagamentoService {
     private static final String CARRINHO_SERVICE_URL = "http://localhost:9515/carrinhos/porId/{idCarrinho}";
 
     public ResumoPagamentoDTO realizarPagamento(Pagamento pagamento, Long idCarrinho) {
-        // Corrigindo a construção da URL
         CarrinhoDTO carrinho = restTemplate.getForObject(CARRINHO_SERVICE_URL, CarrinhoDTO.class, idCarrinho);
 
         if (carrinho == null) {
-            throw new IllegalArgumentException("Carrinho inválido ou valor de pagamento inválido");
+            throw new IllegalArgumentException("Carrinho inválido");
         }
         BigDecimal total = BigDecimal.ZERO;
         for (ItemCarrinhoDTO item : carrinho.getItens()) {
