@@ -11,12 +11,6 @@ spring:
           filters:
             - AuthenticationFilter
 
-        - id: tbsrvclienteswagger
-          uri: lb://srvcliente
-          predicates:
-            - Path=/clientes/api-docs
-            - Method=GET
-
         - id: tbsrvautenticacao
           uri: lb://srvautenticacao
           predicates:
@@ -31,30 +25,12 @@ spring:
           filters:
             - AuthenticationFilter
 
-        - id: tbsrvauthswagger
-          uri: lb://srvautenticacao
-          predicates:
-            - Path=/auth/api-docs
-            - Method=GET
-
-        - id: tbsrvauthusersswagger
-          uri: lb://srvautenticacao
-          predicates:
-            - Path=/users/api-docs
-            - Method=GET
-
         - id: tbsrvpagamento
           uri: lb://srvpagamento
           predicates:
-            - Path=/pagamentos/**
+            - Path=/pagamento/**
           filters:
             - AuthenticationFilter
-
-        - id: tbsrvpagamentoswagger
-          uri: lb://srvpagamento
-          predicates:
-            - Path=/pagamentos/api-docs
-            - Method=GET
 
         - id: tbsrvprodutos
           uri: lb://srvitem
@@ -63,12 +39,6 @@ spring:
           filters:
             - AuthenticationFilter
 
-        - id: tbsrvprodutoswagger
-          uri: lb://srvitem
-          predicates:
-            - Path=/itens/api-docs
-            - Method=GET
-
         - id: tbsrvcarrinho
           uri: lb://srvcarrinho
           predicates:
@@ -76,11 +46,6 @@ spring:
           filters:
             - AuthenticationFilter
 
-        - id: tbsrvcarrinhosswagger
-          uri: lb://srvcarrinho
-          predicates:
-            - Path=/carrinhos/api-docs
-            - Method=GET
 
 server:
   port: 8080
